@@ -22,7 +22,15 @@
 
 int count_unknown_squares(const int board[MAX_SIZE][MAX_SIZE], int size) {
     // your code here
-    return 0;
+    int counter = 0;
+    for(int i = 0; i < size; i++){
+        for(int j = 0; j < size; j++){
+            if(board[i][j] == UNKNOWN){
+                counter++;
+            }
+        }
+    }
+    return counter;
 }
 
 
@@ -34,8 +42,19 @@ bool row_has_no_threes_of_color(const int board[MAX_SIZE][MAX_SIZE],
                                 int size,
                                 int row,
                                 int color) {
-    // your code here
-    return false;
+    int counter = 0;
+    for (int i = 0; i < size; i++) {
+        if (board[row][i] == color) {
+            counter++;
+        } else {
+            counter = 0;
+        }
+        if (counter >= 3) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool col_has_no_threes_of_color(const int board[MAX_SIZE][MAX_SIZE],
@@ -43,12 +62,31 @@ bool col_has_no_threes_of_color(const int board[MAX_SIZE][MAX_SIZE],
                                 int col,
                                 int color) {
     // your code here
-    return false;
+    int counter = 0;
+    for (int i = 0; i < size; i++) {
+        if (board[i][col] == color) {
+            counter++;
+        } else {
+            counter = 0;
+        }
+        if (counter >= 3) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool board_has_no_threes(const int board[MAX_SIZE][MAX_SIZE], int size) {
-    // your code here
-    return false;
+    for (int i = 0; i < size; i++) {
+        if (!(row_has_no_threes_of_color(board, size, i, RED)) ||
+                !(row_has_no_threes_of_color(board, size, i, BLUE)) ||
+                !(col_has_no_threes_of_color(board, size, i, RED)) ||
+                !(col_has_no_threes_of_color(board, size, i, BLUE))) {
+            return false;
+        }
+    }
+    return true;
 }
 
 bool rows_are_different(const int board[MAX_SIZE][MAX_SIZE],
