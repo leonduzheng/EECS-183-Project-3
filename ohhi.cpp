@@ -212,3 +212,4 @@ void solve_lookahead_column(int board[MAX_SIZE][MAX_SIZE],
                             bool announce) {
     // your code here
 }
+
