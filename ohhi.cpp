@@ -95,6 +95,9 @@ bool rows_are_different(const int board[MAX_SIZE][MAX_SIZE],
                         int row2) {
     int counter = 0;
     for (int i = 0; i < size; i++) {
+        if (board[row1][i] == UNKNOWN || board[row2][i] == UNKNOWN) {
+            return true;
+        }
         if (board[row1][i] == board[row2][i]) {
             counter++;
         }
@@ -112,6 +115,9 @@ bool cols_are_different(const int board[MAX_SIZE][MAX_SIZE],
                         int col2) {
     int counter = 0;
     for (int i = 0; i < size; i++) {
+        if (board[i][col1] == UNKNOWN || board[i][col2] == UNKNOWN) {
+            return true;
+        }
         if (board[i][col1] == board[i][col2]) {
             counter++;
         }
@@ -226,14 +232,58 @@ void solve_balance_row(int board[MAX_SIZE][MAX_SIZE],
                        int size,
                        int row,
                        bool announce) {
-    // your code here
+    int blueCount = 0;
+    int redCount = 0;
+    for (int i = 0; i < size; i++) {
+        if (board[row][i] == RED) {
+            redCount++;
+        } else if (board[row][i] == BLUE) {
+            blueCount++;
+        }
+    }
+    if (blueCount == (size / 2)) {
+        for (int i = 0; i < size; i++) {
+            if (board[row][i] == UNKNOWN) {
+                mark_square_as(board, size, row, i, RED, announce);
+            }
+        }
+    }
+    if (redCount == (size / 2)) {
+        for (int i = 0; i < size; i++) {
+            if (board[row][i] == UNKNOWN) {
+                mark_square_as(board, size, row, i, BLUE, announce);
+            }
+        }
+    }
 }
 
 void solve_balance_column(int board[MAX_SIZE][MAX_SIZE],
                           int size,
                           int col,
                           bool announce) {
-    // your code here
+    int blueCount = 0;
+    int redCount = 0;
+    for (int i = 0; i < size; i++) {
+        if (board[i][col] == RED) {
+            redCount++;
+        } else if (board[i][col] == BLUE) {
+            blueCount++;
+        }
+    }
+    if (blueCount == (size / 2)) {
+        for (int i = 0; i < size; i++) {
+            if (board[i][col] == UNKNOWN) {
+                mark_square_as(board, size, i, col, RED, announce);
+            }
+        }
+    }
+    if (redCount == (size / 2)) {
+        for (int i = 0; i < size; i++) {
+            if (board[i][col] == UNKNOWN) {
+                mark_square_as(board, size, i, col, BLUE, announce);
+            }
+        }
+    }
 }
 
 
