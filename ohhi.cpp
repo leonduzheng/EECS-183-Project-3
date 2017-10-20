@@ -145,7 +145,40 @@ void solve_three_in_a_row(int board[MAX_SIZE][MAX_SIZE],
                           int size,
                           int row,
                           bool announce) {
-    // your code here
+    int counter = 0;
+    for (int i = 0; i < size; i++) {
+        if (board[row][i] == UNKNOWN) {
+            if (i + 3 < size) {
+                if (board[row][i+1] == RED) {
+                    if (board[row][i+2] == RED) {
+                        if (board[row][i+3] == UNKNOWN) {
+                            mark_square_as(board, size, row, i, BLUE, announce);
+                            mark_square_as(board, size, row, i+3, BLUE, announce);
+                        }
+                    }
+                } else if (board[row][i+1] == BLUE) {
+                    if (board[row][i+2] == BLUE) {
+                        if (board[row][i+3] == UNKNOWN) {
+                            mark_square_as(board, size, row, i, RED, announce);
+                            mark_square_as(board, size, row, i+3, RED, announce);
+                        }
+                    }
+                }
+            }
+            if ((i - 1 >= 0) && (i + 1 < size)) {
+                if (board[row][i-1] == RED) {
+                    if (board[row][i+1] == RED) {
+                        mark_square_as(board, size, row, i, BLUE, announce);
+                    }
+                } else if (board[row][i-1] == BLUE) {
+                    if (board[row][i+1] == BLUE) {
+                        mark_square_as(board, size, row, i, RED, announce);
+                    }
+                }
+            }
+
+        }
+    }
 }
 
 void solve_three_in_a_column(int board[MAX_SIZE][MAX_SIZE],
@@ -212,4 +245,3 @@ void solve_lookahead_column(int board[MAX_SIZE][MAX_SIZE],
                             bool announce) {
     // your code here
 }
-
