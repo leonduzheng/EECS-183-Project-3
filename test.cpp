@@ -5,8 +5,8 @@
  * Project 3: 0h h1 Test Suite
  * Fall 2017
  *
- * <#Name(s)#>
- * <#uniqname(s)#>
+ * <Grace Xu, Noah Weingarden>
+ * <xugrace, nwein>
  *
  * <#A description of the project here#>
  */
@@ -199,18 +199,18 @@ void test_rows_are_different() {
     
     // test case 1
     
-    string test_board_1[] = {"O-OX",
-        "OO--",
-        "X---",
-        "-O--"};
+    string test_board_1[] = {"OXOX",
+        "OOXO",
+        "XOOO",
+        "XOXO"};
     int size_1 = 4;
     read_board_from_string(board, test_board_1, size_1);
     cout << rows_are_different(board, size_1, 0, 1)  << endl;
     
     // test case 2
     
-    string test_board_2[] = {"O-OX",
-        "O-OX",
+    string test_board_2[] = {"OXOX",
+        "OXOX",
         "X---",
         "-O--"};
     int size_2 = 4;
@@ -224,20 +224,20 @@ void test_cols_are_different() {
     
     // test case 1
     
-    string test_board_1[] = {"O-OX",
-        "OO--",
-        "X---",
-        "-O--"};
+    string test_board_1[] = {"OXOX",
+        "OOXX",
+        "XOXX",
+        "OOXX"};
     int size_1 = 4;
     read_board_from_string(board, test_board_1, size_1);
     cout << cols_are_different(board, size_1, 0, 1)  << endl;
     
     // test case 2
     
-    string test_board_2[] = {"--OX",
-        "--OX",
-        "----",
-        "OO--"};
+    string test_board_2[] = {"XXOX",
+        "OOOX",
+        "XXOO",
+        "OOXO"};
     int size_2 = 4;
     read_board_from_string(board, test_board_2, size_2);
     cout << cols_are_different(board, size_2, 0, 1)  << endl;
@@ -249,30 +249,30 @@ void test_board_has_no_duplicates() {
     
     // test case 1
     
-    string test_board_1[] = {"O-OX",
-        "OO--",
-        "X---",
-        "-O--"};
+    string test_board_1[] = {"OXOX",
+        "OOXX",
+        "XOXO",
+        "OXXO"};
     int size_1 = 4;
     read_board_from_string(board, test_board_1, size_1);
     cout << board_has_no_duplicates(board, size_1) << endl;
     
     // test case 2
     
-    string test_board_2[] = {"O-OX",
-        "O---",
-        "O-OX",
-        "-O--"};
+    string test_board_2[] = {"OXOX",
+        "XOXX",
+        "OXOX",
+        "XOXO"};
     int size_2 = 4;
     read_board_from_string(board, test_board_2, size_2);
     cout << board_has_no_duplicates(board, size_2) << endl;
     
     // test case 3
     
-    string test_board_3[] = {"O-OO",
-        "O--O",
-        "OOXO",
-        "-O--"};
+    string test_board_3[] = {"OXOO",
+        "OXOO",
+        "XXOO",
+        "OOOO"};
     int size_3 = 4;
     read_board_from_string(board, test_board_3, size_3);
     cout << board_has_no_duplicates(board, size_3) << endl;
@@ -512,5 +512,7 @@ void test_solve_balance_column() {
     }
     cout << endl;
 }
+
+
 
 // define more test functions here
