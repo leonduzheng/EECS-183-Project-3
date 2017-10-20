@@ -53,7 +53,7 @@ bool row_has_no_threes_of_color(const int board[MAX_SIZE][MAX_SIZE],
             return false;
         }
     }
-
+    
     return true;
 }
 
@@ -73,16 +73,16 @@ bool col_has_no_threes_of_color(const int board[MAX_SIZE][MAX_SIZE],
             return false;
         }
     }
-
+    
     return true;
 }
 
 bool board_has_no_threes(const int board[MAX_SIZE][MAX_SIZE], int size) {
     for (int i = 0; i < size; i++) {
         if (!(row_has_no_threes_of_color(board, size, i, RED)) ||
-                !(row_has_no_threes_of_color(board, size, i, BLUE)) ||
-                !(col_has_no_threes_of_color(board, size, i, RED)) ||
-                !(col_has_no_threes_of_color(board, size, i, BLUE))) {
+            !(row_has_no_threes_of_color(board, size, i, BLUE)) ||
+            !(col_has_no_threes_of_color(board, size, i, RED)) ||
+            !(col_has_no_threes_of_color(board, size, i, BLUE))) {
             return false;
         }
     }
@@ -175,7 +175,7 @@ void solve_three_in_a_row(int board[MAX_SIZE][MAX_SIZE],
                     }
                 }
             }
-
+            
         }
     }
 }
@@ -185,7 +185,41 @@ void solve_three_in_a_column(int board[MAX_SIZE][MAX_SIZE],
                              int col,
                              bool announce) {
     // your code here
+    for (int i = 0; i < size; i++) {
+        if (board[i][col] == UNKNOWN) {
+            if (i + 3 < size) {
+                if (board[i+1][col] == RED) {
+                    if (board[i+2][col] == RED) {
+                        if (board[i+3][col] == UNKNOWN) {
+                            mark_square_as(board, size, i, col, BLUE, announce);
+                            mark_square_as(board, size, i+3, col, BLUE, announce);
+                        }
+                    }
+                } else if (board[i+1][col] == BLUE) {
+                    if (board[i+2][col] == BLUE) {
+                        if (board[i+3][col] == UNKNOWN) {
+                            mark_square_as(board, size, i, col, RED, announce);
+                            mark_square_as(board, size, i+3, col, RED, announce);
+                        }
+                    }
+                }
+            }
+            if ((i - 1 >= 0) && (i + 1 < size)) {
+                if (board[i-1][col] == RED) {
+                    if (board[i+1][col] == RED) {
+                        mark_square_as(board, size, i, col, BLUE, announce);
+                    }
+                } else if (board[i-1][col] == BLUE) {
+                    if (board[i+1][col] == BLUE) {
+                        mark_square_as(board, size, i, col, RED, announce);
+                    }
+                }
+            }
+            
+        }
+    }
 }
+
 
 
 void solve_balance_row(int board[MAX_SIZE][MAX_SIZE],
