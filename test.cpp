@@ -22,6 +22,7 @@ void test_board_has_no_threes();
 void test_rows_are_different();
 void test_cols_are_different();
 void test_board_has_no_duplicates();
+void test_solve_three_in_a_row();
 
 // declare more test functions here
 
@@ -33,6 +34,7 @@ int main() {
     test_rows_are_different();
     test_cols_are_different();
     test_board_has_no_duplicates();
+    test_solve_three_in_a_row();
 
     // add calls to test functions here
 
@@ -270,4 +272,58 @@ void test_board_has_no_duplicates() {
     cout << board_has_no_duplicates(board, size_3) << endl;
 
 }
+
+void test_solve_three_in_a_row() {
+    cout << "solve_three_in_a_row()" << endl;
+    int board[MAX_SIZE][MAX_SIZE];
+
+    // test case 1
+
+    string test_board_1[] = {"-OO-",
+                             "OO--",
+                             "X---",
+                             "-O--"};
+    int size_1 = 4;
+    int row = 0;
+    read_board_from_string(board, test_board_1, size_1);
+    solve_three_in_a_row(board, size_1, row, true);
+    for (int i = 0; i < size_1; i++) {
+        cout << board[row][i];
+    }
+    cout << endl;
+
+    // test case 2
+
+    string test_board_2[] = {"-OOX",
+                             "-X-X",
+                             "X---",
+                             "-O--"};
+    int size_2 = 4;
+    row = 1;
+    read_board_from_string(board, test_board_2, size_2);
+    solve_three_in_a_row(board, size_2, row, true);
+    for (int i = 0; i < size_2; i++) {
+        cout << board[row][i];
+    }
+    cout << endl;
+
+    // test case 3
+
+    string test_board_3[] = {"-OOXX-",
+                             "-X-XXO",
+                             "O-OO--",
+                             "-O--XO",
+                             "X--OX-",
+                             "--X-OO"};
+    int size_3 = 6;
+    row = 2;
+    read_board_from_string(board, test_board_3, size_3);
+    solve_three_in_a_row(board, size_3, row, true);
+    for (int i = 0; i < size_3; i++) {
+        cout << board[row][i];
+    }
+    cout << endl;
+
+}
+
 // define more test functions here
