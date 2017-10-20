@@ -24,6 +24,8 @@ void test_cols_are_different();
 void test_board_has_no_duplicates();
 void test_solve_three_in_a_row();
 void test_solve_three_in_a_column();
+void test_solve_balance_row();
+void test_solve_balance_column();
 
 // declare more test functions here
 
@@ -37,6 +39,8 @@ int main() {
     test_board_has_no_duplicates();
     test_solve_three_in_a_row();
     test_solve_three_in_a_column();
+    test_solve_balance_row();
+    test_solve_balance_column();
     
     // add calls to test functions here
     
@@ -379,6 +383,134 @@ void test_solve_three_in_a_column() {
     }
     cout << endl;
     
+}
+
+void test_solve_balance_row() {
+    cout << "solve_balance_row()" << endl;
+    int board[MAX_SIZE][MAX_SIZE];
+    
+    // test case 1
+    
+    string test_board_1[] = {"----",
+                             "XX--",
+                             "-XX-",
+                             "--X-"};
+    int size_1 = 4;
+    int row = 1;
+    read_board_from_string(board, test_board_1, size_1);
+    solve_balance_row(board, size_1, row, true);
+    for (int i = 0; i < size_1; i++) {
+        cout << board[row][i];
+    }
+    cout << endl;
+
+    // test case 2
+    
+    string test_board_2[] = {"----",
+                             "XX--",
+                             "-XX-",
+                             "--X-"};
+    int size_2 = 4;
+    row = 2;
+    read_board_from_string(board, test_board_2, size_2);
+    solve_balance_row(board, size_2, row, true);
+    for (int i = 0; i < size_2; i++) {
+        cout << board[row][i];
+    }
+    cout << endl;
+
+    // test case 3
+    
+    string test_board_3[] = {"----",
+                             "XX--",
+                             "-OO-",
+                             "--X-"};
+    int size_3 = 4;
+    row = 2;
+    read_board_from_string(board, test_board_3, size_3);
+    solve_balance_row(board, size_3, row, true);
+    for (int i = 0; i < size_3; i++) {
+        cout << board[row][i];
+    }
+    cout << endl;
+    // test case 4
+    
+    string test_board_4[] = {"----",
+                             "XX--",
+                             "-OO-",
+                             "--X-"};
+    int size_4 = 4;
+    row = 3;
+    read_board_from_string(board, test_board_4, size_4);
+    solve_balance_row(board, size_4, row, true);
+    for (int i = 0; i < size_4; i++) {
+        cout << board[row][i];
+    }
+    cout << endl;
+}
+
+void test_solve_balance_column() {
+    cout << "solve_balance_column()" << endl;
+    int board[MAX_SIZE][MAX_SIZE];
+    
+    // test case 1
+    
+    string test_board_1[] = {"----",
+                             "XX--",
+                             "-XX-",
+                             "--X-"};
+    int size_1 = 4;
+    int col = 1;
+    read_board_from_string(board, test_board_1, size_1);
+    solve_balance_column(board, size_1, col, true);
+    for (int i = 0; i < size_1; i++) {
+        cout << board[i][col] << endl;
+    }
+    cout << endl;
+
+    // test case 2
+    
+    string test_board_2[] = {"----",
+                             "XX--",
+                             "-XX-",
+                             "--X-"};
+    int size_2 = 4;
+    col = 2;
+    read_board_from_string(board, test_board_2, size_2);
+    solve_balance_column(board, size_2, col, true);
+    for (int i = 0; i < size_2; i++) {
+        cout << board[i][col] << endl;
+    }
+    cout << endl;
+
+    // test case 3
+    
+    string test_board_3[] = {"----",
+                             "XXO-",
+                             "-OO-",
+                             "XO--"};
+    int size_3 = 4;
+    col = 2;
+    read_board_from_string(board, test_board_3, size_3);
+    solve_balance_column(board, size_3, col, true);
+    for (int i = 0; i < size_3; i++) {
+        cout << board[i][col] << endl;
+    }
+    cout << endl;
+    // test case 4
+    
+    string test_board_4[] = {"----",
+                             "XX-O",
+                             "-OOX",
+                             "--X-"};
+    int size_4 = 4;
+    col = 3;
+    read_board_from_string(board, test_board_4, size_4);
+    solve_balance_column(board, size_4, col, true);
+    for (int i = 0; i < size_4; i++) {
+        cout << board[i][col] << endl;
+    }
+    cout << endl;
 }
 
 // define more test functions here
