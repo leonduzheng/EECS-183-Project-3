@@ -145,7 +145,6 @@ void solve_three_in_a_row(int board[MAX_SIZE][MAX_SIZE],
                           int size,
                           int row,
                           bool announce) {
-    int counter = 0;
     for (int i = 0; i < size; i++) {
         if (board[row][i] == UNKNOWN) {
             if (i + 3 < size) {
