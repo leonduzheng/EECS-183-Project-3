@@ -8,7 +8,7 @@
  * <Grace Xu, Noah Weingarden>
  * <xugrace, nwein>
  *
- * <#A description of the project here#>
+ * <Test cases for Ohhi game >
  */
 
 #include <iostream>
@@ -30,10 +30,6 @@ void test_board_is_solved();
 void test_check_valid_input();
 void test_check_valid_move();
 
-// declare more test functions here
-
-/*
-
 int main() {
     test_count_unknown_squares();
     test_row_has_no_threes_of_color();
@@ -50,12 +46,10 @@ int main() {
     test_check_valid_input();
     test_check_valid_move();
     
-    // add calls to test functions here
-    
     return 0;
 }
 
-*/
+
 
 
 void test_count_unknown_squares() {
@@ -70,8 +64,6 @@ void test_count_unknown_squares() {
     int size_1 = 4;
     read_board_from_string(board, test_board_1, size_1);
     cout << count_unknown_squares(board, size_1) << endl;
-    
-    // add more tests here
     
     // test case 2
     string test_board_2[] = {"----",
@@ -745,6 +737,4 @@ void test_check_valid_move() {
     read_board_from_string(currentBoard, test_current_board, size);
 
     cout << check_valid_move(originalBoard, currentBoard, size, row, col, color) << endl;
-
-
 }
