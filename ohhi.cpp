@@ -303,14 +303,8 @@ void solve_balance_column(int board[MAX_SIZE][MAX_SIZE],
 // Next use all three validation functions. If all return true, then the board is solved
 
 bool board_is_solved(const int board[MAX_SIZE][MAX_SIZE], int size) {
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            if (board[i][j] == UNKNOWN) {
-                return false;
-            }
-        }
-    }
-    if (board_has_no_duplicates(board, size) & board_has_no_threes(board, size) & (board_is_balanced(board, size))) {
+    if (count_unknown_squares(board, size) > 0) return false;
+    if (board_is_valid(board, size)) {
         return true;
     } else {
         return false;
