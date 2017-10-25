@@ -26,8 +26,13 @@ void test_solve_three_in_a_row();
 void test_solve_three_in_a_column();
 void test_solve_balance_row();
 void test_solve_balance_column();
+void test_board_is_solved();
+void test_check_valid_input();
+void test_check_valid_move();
 
 // declare more test functions here
+
+/*
 
 int main() {
     test_count_unknown_squares();
@@ -41,11 +46,16 @@ int main() {
     test_solve_three_in_a_column();
     test_solve_balance_row();
     test_solve_balance_column();
+    test_board_is_solved();
+    test_check_valid_input();
+    test_check_valid_move();
     
     // add calls to test functions here
     
     return 0;
 }
+
+*/
 
 
 void test_count_unknown_squares() {
@@ -270,9 +280,9 @@ void test_board_has_no_duplicates() {
     // test case 3
     
     string test_board_3[] = {"OXOO",
-        "OXOO",
-        "XXOO",
-        "OOOO"};
+                             "OXOO",
+                             "XXOO",
+                             "OOOO"};
     int size_3 = 4;
     read_board_from_string(board, test_board_3, size_3);
     cout << board_has_no_duplicates(board, size_3) << endl;
@@ -513,6 +523,228 @@ void test_solve_balance_column() {
     cout << endl;
 }
 
+void test_board_is_solved() {
+    cout << "board_is_solved()" << endl;
+    int board[MAX_SIZE][MAX_SIZE];
+    
+    // test case 1
+    
+    string test_board_1[] = {"OOXX",
+                            "OXXO",
+                            "XXOO",
+                            "XOOX"};
+    int size_1 = 4;
+    read_board_from_string(board, test_board_1, size_1);
+    cout << board_is_solved(board, size_1) << endl;
+
+    // test case 2
+    
+    string test_board_2[] = {"XXOO",
+                            "OXOX",
+                            "OOXX",
+                            "XOXO"};
+    int size_2 = 4;
+    read_board_from_string(board, test_board_2, size_2);
+    cout << board_is_solved(board, size_2) << endl;
+
+    // test case 3
+    
+    string test_board_3[] = {"OOXX",
+                            "XXOO",
+                            "OXOX",
+                            "XOXO"};
+    int size_3 = 4;
+    read_board_from_string(board, test_board_3, size_3);
+    cout << board_is_solved(board, size_3) << endl;
+
+    // test case 4
+    
+    string test_board_4[] = {"XXOOXO",
+                            "XOXXOO",
+                            "OOXOXX",
+                            "OXOXXO",
+                            "XOXOOX",
+                            "OXOXOX"};
+    int size_4 = 6;
+    read_board_from_string(board, test_board_4, size_4);
+    cout << board_is_solved(board, size_4) << endl;
+
+    // test case 5
+    
+    string test_board_5[] = {"XXOOXO",
+                            "XOXXOO",
+                            "OOOOXX",
+                            "OXOXXO",
+                            "XOXOOX",
+                            "XXOXOX"};
+    int size_5 = 6;
+    read_board_from_string(board, test_board_5, size_5);
+    cout << board_is_solved(board, size_5) << endl;
+}
+
+void test_check_valid_input() {
+    cout << "check_valid_input()" << endl;
+
+    // Test case 1
+
+    int size = 4;
+    int row_input = 3;
+    char col_input = 'B';
+    char color_char = 'X';
+    int row = 0;
+    int col = 0;
+    cout << check_valid_input(size, row_input, col_input, color_char, row, col) << endl;
+
+    // Test case 2
+
+    size = 4;
+    row_input = 5;
+    col_input = 'A';
+    color_char = 'O';
+    row = 0;
+    col = 0;
+    cout << check_valid_input(size, row_input, col_input, color_char, row, col) << endl;
+
+    // Test case 3
+    
+    size = 4;
+    row_input = 1;
+    col_input = 'A';
+    color_char = 'O';
+    row = 0;
+    col = 0;
+    cout << check_valid_input(size, row_input, col_input, color_char, row, col) << endl;
+
+    // Test case 4
+    
+    size = 4;
+    row_input = 4;
+    col_input = 'D';
+    color_char = 'X';
+    row = 0;
+    col = 0;
+    cout << check_valid_input(size, row_input, col_input, color_char, row, col) << endl;
+
+    // Test case 5
+    
+    size = 4;
+    row_input = 4;
+    col_input = 'E';
+    color_char = 'O';
+    row = 0;
+    col = 0;
+    cout << check_valid_input(size, row_input, col_input, color_char, row, col) << endl;
 
 
-// define more test functions here
+    // Test case 6
+    
+    size = 4;
+    row_input = 4;
+    col_input = 'd';
+    color_char = 'x';
+    row = 0;
+    col = 0;
+    cout << check_valid_input(size, row_input, col_input, color_char, row, col) << endl;
+
+    // Test case 7
+    
+    size = 4;
+    row_input = 4;
+    col_input = 'd';
+    color_char = 'C';
+    row = 0;
+    col = 0;
+    cout << check_valid_input(size, row_input, col_input, color_char, row, col) << endl;
+
+    // Test case 8
+    
+    size = 4;
+    row_input = 1;
+    col_input = 'b';
+    color_char = '-';
+    row = 0;
+    col = 0;
+    cout << check_valid_input(size, row_input, col_input, color_char, row, col) << endl;
+}
+
+void test_check_valid_move() {
+    cout << "check_valid_move()" << endl;
+    
+    // test case 1
+    
+    int originalBoard[MAX_SIZE][MAX_SIZE];
+    string test_board[] =   {"----",
+                             "XXO-",
+                             "-XO-",
+                             "--X-"};
+    int currentBoard[MAX_SIZE][MAX_SIZE];
+    string test_current_board[] =   {"---X",
+                                     "XXOO",
+                                     "XXO-",
+                                     "--X-"};
+    int size = 4;
+    int row = 2;
+    int col = 3;
+    int color = BLUE;
+    read_board_from_string(originalBoard, test_board, size);
+    read_board_from_string(currentBoard, test_current_board, size);
+
+    cout << check_valid_move(originalBoard, currentBoard, size, row, col, color) << endl;
+
+    // Test case 2
+
+    size = 4;
+    row = 3;
+    col = 2;
+    color = BLUE;
+    read_board_from_string(originalBoard, test_board, size);
+    read_board_from_string(currentBoard, test_current_board, size);
+
+    cout << check_valid_move(originalBoard, currentBoard, size, row, col, color) << endl;
+
+    // Test case 3
+
+    size = 4;
+    row = 0;
+    col = 0;
+    color = BLUE;
+    read_board_from_string(originalBoard, test_board, size);
+    read_board_from_string(currentBoard, test_current_board, size);
+
+    cout << check_valid_move(originalBoard, currentBoard, size, row, col, color) << endl;
+
+    // Test case 4
+
+    size = 4;
+    row = 1;
+    col = 3;
+    color = UNKNOWN;
+    read_board_from_string(originalBoard, test_board, size);
+    read_board_from_string(currentBoard, test_current_board, size);
+
+    cout << check_valid_move(originalBoard, currentBoard, size, row, col, color) << endl;
+
+    // Test case 5
+
+    size = 4;
+    row = 0;
+    col = 3;
+    color = BLUE;
+    read_board_from_string(originalBoard, test_board, size);
+    read_board_from_string(currentBoard, test_current_board, size);
+
+    cout << check_valid_move(originalBoard, currentBoard, size, row, col, color) << endl;
+
+    // Test case 6
+
+    size = 4;
+    row = 0;
+    col = 0;
+    color = RED;
+    read_board_from_string(originalBoard, test_board, size);
+    read_board_from_string(currentBoard, test_current_board, size);
+
+    cout << check_valid_move(originalBoard, currentBoard, size, row, col, color) << endl;
+
+
+}
